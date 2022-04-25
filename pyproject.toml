@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools", "scikit-build>=0.13", "cmake", "ninja"]
+build-backend = "setuptools.build_meta"
+
+[tool.cibuildwheel]
+test-extras = "test"
+test-command = "pytest {project}/tests"
+
+[tool.cibuildwheel.macos]
+archs = ["auto", "universal2"]
+test-skip = ["*universal2:arm64"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["tests"]
